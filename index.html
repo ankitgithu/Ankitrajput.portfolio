@@ -897,51 +897,378 @@
       }
     }
 
-    /* Minimal Services Section Styles */
+    /* =========================================
+       Cinematic Interactive Services Scroll Section
+       ========================================= */
     #services {
-      min-height: auto;
-      padding-top: 100px;
-      padding-bottom: 80px;
+      position: relative;
+      min-height: 280vh; /* Dedicated scroll runway for cinematic branch growth */
+      padding: 0;
+      background: transparent;
+      box-sizing: border-box;
+      display: block;
     }
 
-    .minimal-services-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    .minimal-service-item {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 24px 22px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: all 0.3s ease;
+    .services-sticky-stage {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      padding: 30px 40px;
+      box-sizing: border-box;
+      z-index: 5;
     }
 
-    .minimal-service-item:hover {
-      border-color: rgba(255, 70, 36, 0.45);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+    .services-stage-header {
+      text-align: center;
+      margin-bottom: 24px;
+      z-index: 10;
+      transition: opacity 0.4s ease;
+    }
+
+    .services-stage-header .section-tag {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .services-stage-header h2 {
+      font-size: clamp(32px, 3.8vw, 48px);
+      font-weight: 900;
+      letter-spacing: -1.2px;
+      color: #ffffff;
+      margin: 0;
+    }
+
+    .services-network-container {
+      position: relative;
+      width: 100%;
+      max-width: 1320px;
+      height: 580px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* SVG Layer for Organic Glowing Branches */
+    .services-branches-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 3;
+      overflow: visible;
+    }
+
+    .branch-path-bg {
+      fill: none;
+      stroke: rgba(255, 70, 36, 0.08);
+      stroke-width: 2px;
+      stroke-dasharray: 4, 8;
+    }
+
+    .branch-path {
+      fill: none;
+      stroke: url(#branch-glow-grad);
+      stroke-width: 2.8px;
+      stroke-linecap: round;
+      filter: drop-shadow(0 0 8px rgba(255, 70, 36, 0.75));
+      transition: stroke 0.3s ease;
+    }
+
+    .branch-spark {
+      fill: #ffffff;
+      stroke: var(--accent);
+      stroke-width: 3px;
+      filter: drop-shadow(0 0 10px #ff4624) drop-shadow(0 0 20px #ff7849);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    /* Central SERVICES Glowing Core Node */
+    .services-central-core {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      z-index: 12;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: default;
+      user-select: none;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    }
+
+    .core-ambient-aura {
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 70, 36, 0.38) 0%, rgba(255, 70, 36, 0.12) 45%, transparent 70%);
+      filter: blur(28px);
+      z-index: -1;
+      pointer-events: none;
+      animation: coreAuraPulse 4s infinite ease-in-out alternate;
+    }
+
+    @keyframes coreAuraPulse {
+      0% { transform: scale(0.9); opacity: 0.6; }
+      100% { transform: scale(1.18); opacity: 1; }
+    }
+
+    .core-orbit-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 70, 36, 0.45);
+      pointer-events: none;
+    }
+
+    .core-orbit-ring.ring-1 {
+      width: 164px;
+      height: 164px;
+      animation: coreRotateClockwise 18s linear infinite;
+    }
+
+    .core-orbit-ring.ring-2 {
+      width: 188px;
+      height: 188px;
+      border-color: rgba(255, 120, 73, 0.25);
+      animation: coreRotateCounterClockwise 26s linear infinite;
+    }
+
+    @keyframes coreRotateClockwise {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes coreRotateCounterClockwise {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+
+    .core-inner-disc {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, rgba(40, 20, 18, 0.95), rgba(12, 12, 16, 0.98));
+      border: 2px solid rgba(255, 70, 36, 0.7);
+      box-shadow: 0 0 30px rgba(255, 70, 36, 0.35), inset 0 0 20px rgba(255, 70, 36, 0.25);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .core-subtext {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .core-title-text {
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: 1.8px;
+      color: #ffffff;
+      text-shadow: 0 0 12px rgba(255, 255, 255, 0.5), 0 0 24px rgba(255, 70, 36, 0.6);
+    }
+
+    .core-pulse-beacon {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 0 8px #ffffff, 0 0 16px var(--accent);
+      margin-top: 4px;
+      animation: beaconBlink 1.6s infinite ease-in-out;
+    }
+
+    @keyframes beaconBlink {
+      0%, 100% { opacity: 0.3; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+
+    /* 8 Service Cards Positioning & Progressive Styling */
+    .services-nodes-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 8;
+    }
+
+    .minimal-service-item.service-node {
+      position: absolute;
+      width: 250px;
+      background: rgba(14, 14, 18, 0.88);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      opacity: 0;
+      transform: scale(0.65);
+      transform-origin: center center;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .minimal-service-item.service-node.active-revealed {
+      pointer-events: auto;
+    }
+
+    .minimal-service-item.service-node:hover {
+      border-color: rgba(255, 70, 36, 0.7) !important;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 70, 36, 0.35) !important;
+      transform: scale(1.04) !important;
     }
 
     .minimal-service-num {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
       color: var(--accent);
-      margin-bottom: 8px;
-      letter-spacing: 1px;
+      margin-bottom: 6px;
+      letter-spacing: 1.2px;
+      display: inline-block;
     }
 
     .minimal-service-title {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 700;
       color: #ffffff;
-      letter-spacing: -0.3px;
+      letter-spacing: -0.2px;
+      line-height: 1.35;
+      margin: 0;
+    }
+
+    /* Desktop Specific Card Coordinate Placements */
+    .service-node[data-index="0"] { top: 6%; left: 3%; }
+    .service-node[data-index="1"] { top: 29%; left: 0%; }
+    .service-node[data-index="2"] { top: 52%; left: 0%; }
+    .service-node[data-index="3"] { top: 75%; left: 3%; }
+
+    .service-node[data-index="4"] { top: 6%; right: 3%; }
+    .service-node[data-index="5"] { top: 29%; right: 0%; }
+    .service-node[data-index="6"] { top: 52%; right: 0%; }
+    .service-node[data-index="7"] { top: 75%; right: 3%; }
+
+    /* Responsive Adaptations */
+    @media (max-width: 1100px) {
+      .services-network-container {
+        height: 520px;
+      }
+      .minimal-service-item.service-node {
+        width: 210px;
+        padding: 14px 16px;
+      }
+      .minimal-service-title {
+        font-size: 14px;
+      }
+      .services-central-core {
+        width: 120px;
+        height: 120px;
+      }
+      .core-title-text {
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 820px) {
+      #services {
+        min-height: 240vh;
+      }
+      .services-sticky-stage {
+        padding: 20px 14px;
+      }
+      .services-network-container {
+        height: 560px;
+      }
+      .minimal-service-item.service-node {
+        width: 170px;
+        padding: 10px 12px;
+        border-radius: 12px;
+      }
+      .minimal-service-num {
+        font-size: 10px;
+        margin-bottom: 2px;
+      }
+      .minimal-service-title {
+        font-size: 12px;
+        line-height: 1.25;
+      }
+      .services-central-core {
+        width: 95px;
+        height: 95px;
+      }
+      .core-subtext {
+        font-size: 8px;
+        letter-spacing: 1.5px;
+      }
+      .core-title-text {
+        font-size: 12px;
+        letter-spacing: 1px;
+      }
+      .core-orbit-ring.ring-1 { width: 115px; height: 115px; }
+      .core-orbit-ring.ring-2 { width: 132px; height: 132px; }
+
+      .service-node[data-index="0"] { top: 4%; left: 1%; }
+      .service-node[data-index="1"] { top: 27%; left: 0%; }
+      .service-node[data-index="2"] { top: 50%; left: 0%; }
+      .service-node[data-index="3"] { top: 73%; left: 1%; }
+
+      .service-node[data-index="4"] { top: 4%; right: 1%; }
+      .service-node[data-index="5"] { top: 27%; right: 0%; }
+      .service-node[data-index="6"] { top: 50%; right: 0%; }
+      .service-node[data-index="7"] { top: 73%; right: 1%; }
+    }
+
+    @media (max-width: 480px) {
+      .services-network-container {
+        height: 520px;
+      }
+      .minimal-service-item.service-node {
+        width: 142px;
+        padding: 8px 10px;
+      }
+      .minimal-service-title {
+        font-size: 11px;
+      }
+      .services-central-core {
+        width: 82px;
+        height: 82px;
+      }
+      .core-title-text {
+        font-size: 11px;
+      }
     }
 
     /* Ultra-Minimal Clean Footer */
@@ -1323,51 +1650,93 @@
       </div>
 
       <div class="reels-grid" id="reels-grid-container">
-        <!-- Dynamic loading from Google Drive -->
+        <!-- Featured YouTube Shorts Reels -->
       </div>
 
       <div class="reels-action-container" id="reels-action-container"></div>
     </section>
 
-    <!-- Section 4: Services -->
-    <section id="services">
-      <div class="section-header">
-        <span class="section-tag">// 03. SERVICES</span>
-        <h2>What I Do</h2>
-      </div>
+    <!-- Section 4: Services (Cinematic Interactive Scroll Animation) -->
+    <section id="services" class="services-scroll-section">
+      <div class="services-sticky-stage">
+        <div class="section-header services-stage-header">
+          <span class="section-tag">// 03. SERVICES</span>
+          <h2>What I Do</h2>
+        </div>
 
-      <div class="minimal-services-grid">
-        <div class="minimal-service-item">
-          <span class="minimal-service-num">#01</span>
-          <h3 class="minimal-service-title">Reels & Shorts Editing</h3>
-        </div>
-        <div class="minimal-service-item">
-          <span class="minimal-service-num">#02</span>
-          <h3 class="minimal-service-title">Long Video Editing</h3>
-        </div>
-        <div class="minimal-service-item">
-          <span class="minimal-service-num">#03</span>
-          <h3 class="minimal-service-title">Documentary Style Editing</h3>
-        </div>
-        <div class="minimal-service-item">
-          <span class="minimal-service-num">#04</span>
-          <h3 class="minimal-service-title">Promotional & Brand Videos</h3>
-        </div>
-        <div class="minimal-service-item">
-          <span class="minimal-service-num">#05</span>
-          <h3 class="minimal-service-title">Poster & Thumbnail Design</h3>
-        </div>
-        <div class="minimal-service-item">
-          <span class="minimal-service-num">#06</span>
-          <h3 class="minimal-service-title">Social Media Creative Design</h3>
-        </div>
-        <div class="minimal-service-item">
-          <span class="minimal-service-num">#07</span>
-          <h3 class="minimal-service-title">AI Video Creation</h3>
-        </div>
-        <div class="minimal-service-item">
-          <span class="minimal-service-num">#08</span>
-          <h3 class="minimal-service-title">Web Development</h3>
+        <div class="services-network-container" id="services-network">
+          <!-- SVG Canvas for Organic Glowing Branches & Sparks -->
+          <svg class="services-branches-svg" id="services-branches-svg" viewBox="0 0 1000 600" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="branch-glow-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ff4624" stop-opacity="1"/>
+                <stop offset="60%" stop-color="#ff7849" stop-opacity="0.95"/>
+                <stop offset="100%" stop-color="#ffffff" stop-opacity="0.9"/>
+              </linearGradient>
+              <filter id="branch-intense-glow" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feMerge>
+                  <feMergeNode in="blur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+
+            <!-- Background subtle tracks -->
+            <g id="branch-bg-tracks"></g>
+            <!-- Glowing Active Growing Branches -->
+            <g id="branch-paths-group"></g>
+            <!-- Tip Light Sparks -->
+            <g id="branch-sparks-group"></g>
+          </svg>
+
+          <!-- Central SERVICES Glowing Core Node -->
+          <div class="services-central-core" id="services-central-core">
+            <div class="core-ambient-aura"></div>
+            <div class="core-orbit-ring ring-1"></div>
+            <div class="core-orbit-ring ring-2"></div>
+            <div class="core-inner-disc">
+              <span class="core-subtext">CORE</span>
+              <span class="core-title-text">SERVICES</span>
+              <div class="core-pulse-beacon"></div>
+            </div>
+          </div>
+
+          <!-- 8 Service Cards Nodes -->
+          <div class="services-nodes-wrapper" id="services-nodes-wrapper">
+            <div class="minimal-service-item service-node" data-index="0">
+              <span class="minimal-service-num">#01</span>
+              <h3 class="minimal-service-title">Reels &amp; Shorts Editing</h3>
+            </div>
+            <div class="minimal-service-item service-node" data-index="1">
+              <span class="minimal-service-num">#02</span>
+              <h3 class="minimal-service-title">Long Video Editing</h3>
+            </div>
+            <div class="minimal-service-item service-node" data-index="2">
+              <span class="minimal-service-num">#03</span>
+              <h3 class="minimal-service-title">Documentary Style Editing</h3>
+            </div>
+            <div class="minimal-service-item service-node" data-index="3">
+              <span class="minimal-service-num">#04</span>
+              <h3 class="minimal-service-title">Promotional &amp; Brand Videos</h3>
+            </div>
+            <div class="minimal-service-item service-node" data-index="4">
+              <span class="minimal-service-num">#05</span>
+              <h3 class="minimal-service-title">Poster &amp; Thumbnail Design</h3>
+            </div>
+            <div class="minimal-service-item service-node" data-index="5">
+              <span class="minimal-service-num">#06</span>
+              <h3 class="minimal-service-title">Social Media Creative Design</h3>
+            </div>
+            <div class="minimal-service-item service-node" data-index="6">
+              <span class="minimal-service-num">#07</span>
+              <h3 class="minimal-service-title">AI Video Creation</h3>
+            </div>
+            <div class="minimal-service-item service-node" data-index="7">
+              <span class="minimal-service-num">#08</span>
+              <h3 class="minimal-service-title">Web Development</h3>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1537,69 +1906,22 @@
 
       
       
-      // Dynamic Google Drive Reels Loader (No hardcoding)
-      const DRIVE_FOLDER_ID = '1dJ0XPs_FFFI615obXlhAMeFwj7ID9s9J';
+      // YouTube Shorts Featured Reels
+      const YOUTUBE_SHORTS = [
+        { id: 'm4MJV9_BFkw', url: 'https://youtube.com/shorts/m4MJV9_BFkw', name: 'Featured Reel 01' },
+        { id: 'jBYWbSXNLeQ', url: 'https://youtube.com/shorts/jBYWbSXNLeQ', name: 'Featured Reel 02' },
+        { id: 'Be-HGltJ4Gs', url: 'https://youtube.com/shorts/Be-HGltJ4Gs', name: 'Featured Reel 03' },
+        { id: 'm4MJV9_BFkw', url: 'https://youtube.com/shorts/m4MJV9_BFkw', name: 'Featured Reel 04' },
+        { id: 'xFdG1F6j6SE', url: 'https://youtube.com/shorts/xFdG1F6j6SE', name: 'Featured Reel 05' }
+      ];
       const INITIAL_VISIBLE_COUNT = 4;
 
-      async function loadDynamicReels() {
+      function loadYouTubeReels() {
         const grid = document.getElementById('reels-grid-container');
         const actionContainer = document.getElementById('reels-action-container');
         if (!grid) return;
 
-        let videos = [];
-
-        try {
-          // Attempt 1: Fetch from live backend API endpoint
-          const res = await fetch('/api/reels', { cache: 'no-store' });
-          if (res.ok) {
-            videos = await res.json();
-          }
-        } catch (e) {
-          console.warn('Backend /api/reels unreachable, attempting client-side drive fetch...', e);
-        }
-
-        // Attempt 2: If running purely client-side without local server, query via public proxy
-        if (!videos || videos.length === 0) {
-          try {
-            const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(`https://drive.google.com/drive/folders/${DRIVE_FOLDER_ID}?usp=sharing`)}`;
-            const response = await fetch(proxyUrl);
-            const text = await response.text();
-            
-            const seen = new Set();
-
-            // Row matches
-            const rowMatches = [...text.matchAll(/<tr[^>]*?data-id="([a-zA-Z0-9_-]{25,45})"[^>]*?>([\s\S]*?)<\/tr>/gs)];
-            for (let i = 0; i < rowMatches.length; i++) {
-              const fid = rowMatches[i][1];
-              const rHtml = rowMatches[i][2];
-              if (!seen.has(fid) && fid !== DRIVE_FOLDER_ID) {
-                seen.add(fid);
-                const titleM = rHtml.match(/data-tooltip-unhoverable="true"[^>]*?>([^<]+)</) || rHtml.match(/\[\[\["([^"]+)"/);
-                const name = titleM ? titleM[1].replace(/\.(?:mp4|mov|webm|m4v)/i, '').replace(/[-_]/g, ' ') : `Reel ${String(seen.size).padStart(2, '0')}`;
-                videos.push({ id: fid, name: name });
-              }
-            }
-
-            // Regex pattern matches
-            const matches1 = [...text.matchAll(/\[\[null,"([a-zA-Z0-9_-]{25,45})"\]\].*?\[\[\["([^"]+)"/gs)];
-            for (const m of matches1) {
-              if (!seen.has(m[1]) && m[1] !== DRIVE_FOLDER_ID) {
-                seen.add(m[1]);
-                videos.push({ id: m[1], name: m[2].replace(/\.(?:mp4|mov|webm|m4v)/i, '').replace(/[-_]/g, ' ') });
-              }
-            }
-          } catch (err) {
-            console.error('Failed client-side drive parsing:', err);
-          }
-        }
-
-        if (!videos || videos.length === 0) {
-          grid.innerHTML = '<p style="color: #94a3b8; text-align: center; grid-column: 1/-1;">Loading reels from Google Drive...</p>';
-          return;
-        }
-
-        // Strictly sort videos by Name in ascending (A to Z) alphanumeric order
-        videos.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
+        const videos = YOUTUBE_SHORTS;
 
         // Render Reel Cards Dynamically
         grid.innerHTML = '';
@@ -1610,7 +1932,14 @@
           
           card.innerHTML = `
             <div class="reel-video-wrapper">
-              <iframe src="https://drive.google.com/file/d/${v.id}/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+              <iframe 
+                src="https://www.youtube.com/embed/${v.id}?enablejsapi=1&rel=0" 
+                title="${v.name}" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen 
+                loading="lazy">
+              </iframe>
             </div>
             <div class="reel-info">
               <span class="reel-badge">Reel #${String(index + 1).padStart(2, '0')}</span>
@@ -1659,7 +1988,7 @@
         }
       }
 
-      loadDynamicReels();
+      loadYouTubeReels();
 
       
       // Subtle Mouse Parallax on Hero Visuals
@@ -1692,6 +2021,196 @@
             if (chip2) chip2.style.transform = `translate3d(0, 0, 0)`;
           });
         }
+      })();
+
+      // =========================================
+      // Cinematic Interactive Services Scroll Engine
+      // =========================================
+      (function initServicesAnimation() {
+        const servicesSection = document.getElementById('services');
+        const networkContainer = document.getElementById('services-network');
+        const coreNode = document.getElementById('services-central-core');
+        const cards = document.querySelectorAll('.service-node');
+        const svg = document.getElementById('services-branches-svg');
+        const bgTracksGroup = document.getElementById('branch-bg-tracks');
+        const pathsGroup = document.getElementById('branch-paths-group');
+        const sparksGroup = document.getElementById('branch-sparks-group');
+
+        if (!servicesSection || !networkContainer || !coreNode || !cards.length || !svg) return;
+
+        let branchData = [];
+        let targetScrollProgress = 0;
+        let currentScrollProgress = 0;
+
+        // Build SVG Paths dynamically connecting Central Core to each Card Node
+        function updateBranchGeometry() {
+          const containerRect = networkContainer.getBoundingClientRect();
+          const coreRect = coreNode.getBoundingClientRect();
+
+          const coreCenter = {
+            x: (coreRect.left + coreRect.width / 2) - containerRect.left,
+            y: (coreRect.top + coreRect.height / 2) - containerRect.top
+          };
+
+          svg.setAttribute('viewBox', `0 0 ${containerRect.width} ${containerRect.height}`);
+
+          bgTracksGroup.innerHTML = '';
+          pathsGroup.innerHTML = '';
+          sparksGroup.innerHTML = '';
+          branchData = [];
+
+          cards.forEach((card, i) => {
+            const cardRect = card.getBoundingClientRect();
+            const cardCenter = {
+              x: (cardRect.left + cardRect.width / 2) - containerRect.left,
+              y: (cardRect.top + cardRect.height / 2) - containerRect.top
+            };
+
+            // Target connection point on card edge closest to core
+            const isLeft = cardCenter.x < coreCenter.x;
+            const targetPoint = {
+              x: isLeft ? (cardRect.right - containerRect.left - 4) : (cardRect.left - containerRect.left + 4),
+              y: cardCenter.y
+            };
+
+            // Organic Bezier Control Points
+            const dx = targetPoint.x - coreCenter.x;
+            const dy = targetPoint.y - coreCenter.y;
+            const cp1x = coreCenter.x + dx * 0.45;
+            const cp1y = coreCenter.y + dy * 0.12;
+            const cp2x = coreCenter.x + dx * 0.65;
+            const cp2y = coreCenter.y + dy * 0.92;
+
+            const pathD = `M ${coreCenter.x} ${coreCenter.y} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${targetPoint.x} ${targetPoint.y}`;
+
+            // 1. Background subtle path
+            const bgPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            bgPath.setAttribute('d', pathD);
+            bgPath.setAttribute('class', 'branch-path-bg');
+            bgTracksGroup.appendChild(bgPath);
+
+            // 2. Active glowing path
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', pathD);
+            path.setAttribute('class', 'branch-path');
+            path.setAttribute('filter', 'url(#branch-intense-glow)');
+            const totalLen = path.getTotalLength();
+            path.style.strokeDasharray = `${totalLen} ${totalLen}`;
+            path.style.strokeDashoffset = totalLen;
+            pathsGroup.appendChild(path);
+
+            // 3. Tip Spark / Bead
+            const spark = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            spark.setAttribute('r', '4');
+            spark.setAttribute('class', 'branch-spark');
+            sparksGroup.appendChild(spark);
+
+            // Progress thresholds for 8 services (revealed sequentially from p=0.06 to p=0.74)
+            const stepRange = 0.09;
+            const startP = 0.05 + i * 0.08;
+            const endP = startP + stepRange;
+
+            branchData.push({
+              path,
+              spark,
+              totalLen,
+              card,
+              startP,
+              endP
+            });
+          });
+        }
+
+        function calculateSectionProgress() {
+          const rect = servicesSection.getBoundingClientRect();
+          const scrollDistance = servicesSection.offsetHeight - window.innerHeight;
+          if (scrollDistance <= 0) return 0;
+          const progress = -rect.top / scrollDistance;
+          return Math.max(0, Math.min(1, progress));
+        }
+
+        function updateServicesAnimation() {
+          // Smooth Lerp Interpolation
+          targetScrollProgress = calculateSectionProgress();
+          const diff = targetScrollProgress - currentScrollProgress;
+          if (Math.abs(diff) > 0.0004) {
+            currentScrollProgress += diff * 0.14;
+          } else {
+            currentScrollProgress = targetScrollProgress;
+          }
+
+          const p = currentScrollProgress;
+
+          // Animate Central Core
+          if (coreNode) {
+            coreNode.style.boxShadow = `0 0 ${25 + p * 35}px rgba(255, 70, 36, ${0.35 + p * 0.45})`;
+          }
+
+          // Animate Branches & Service Nodes
+          branchData.forEach((b) => {
+            let branchFrac = 0;
+            if (p <= b.startP) {
+              branchFrac = 0;
+            } else if (p >= b.endP) {
+              branchFrac = 1;
+            } else {
+              const linear = (p - b.startP) / (b.endP - b.startP);
+              // Smooth cubic easing
+              branchFrac = linear * linear * (3 - 2 * linear);
+            }
+
+            // Update Path stroke-dashoffset
+            const currentOffset = b.totalLen * (1 - branchFrac);
+            b.path.style.strokeDashoffset = currentOffset;
+
+            // Update Spark Position at current branch tip
+            if (branchFrac > 0.02 && branchFrac < 0.98) {
+              const pt = b.path.getPointAtLength(b.totalLen * branchFrac);
+              b.spark.setAttribute('cx', pt.x);
+              b.spark.setAttribute('cy', pt.y);
+              b.spark.style.opacity = '1';
+            } else {
+              b.spark.style.opacity = '0';
+            }
+
+            // Reveal Card smoothly when branch reaches endpoint
+            const cardRevealFrac = Math.max(0, Math.min(1, (branchFrac - 0.45) / 0.55));
+            const cardOpacity = cardRevealFrac;
+            const cardScale = 0.65 + cardRevealFrac * 0.35;
+            const cardGlow = cardRevealFrac > 0.8 ? (cardRevealFrac - 0.8) * 5 : 0;
+
+            b.card.style.opacity = cardOpacity.toFixed(3);
+            b.card.style.transform = `scale(${cardScale.toFixed(3)})`;
+            
+            if (cardRevealFrac >= 0.9) {
+              b.card.classList.add('active-revealed');
+              b.card.style.borderColor = `rgba(255, 70, 36, ${0.3 + cardGlow * 0.35})`;
+            } else {
+              b.card.classList.remove('active-revealed');
+              b.card.style.borderColor = 'var(--card-border)';
+            }
+          });
+        }
+
+        // Initialize
+        setTimeout(updateBranchGeometry, 60);
+        setTimeout(updateBranchGeometry, 350);
+
+        // Hook into animation loop & resize
+        window.addEventListener('resize', () => {
+          updateBranchGeometry();
+        }, { passive: true });
+
+        window.addEventListener('scroll', () => {
+          targetScrollProgress = calculateSectionProgress();
+        }, { passive: true });
+
+        // Add to main render ticker
+        function serviceTicker() {
+          updateServicesAnimation();
+          requestAnimationFrame(serviceTicker);
+        }
+        requestAnimationFrame(serviceTicker);
       })();
 
       // Start engine
